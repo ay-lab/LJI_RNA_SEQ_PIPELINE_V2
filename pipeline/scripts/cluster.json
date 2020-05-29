@@ -1,0 +1,47 @@
+{
+    "__default__" :
+    {
+        "walltime" : "walltime=1:00:00",
+        "cores" : "nodes=1:ppn=1",
+        "memory" : "mem=20GB",
+        "output" : "logs/cluster.out",
+        "error" : "logs/cluster.err"
+    },
+    
+    "fastq_filter":
+    {
+        "walltime" : "walltime=1:00:00",
+        "cores" : "nodes=1:ppn=4",
+        "memory" : "mem=20GB"        
+    },
+    "star_mapping" :
+    {
+        "walltime" : "walltime=2:00:00",
+        "cores" : "nodes=1:ppn=4",
+        "memory" : "mem=40GB"
+    },
+    "bam_sorting" :
+    {
+        "walltime" : "walltime=2:00:00",
+        "cores" : "nodes=1:ppn=4",
+        "memory" : "mem=35GB"       
+    },
+    "bamCoverage" :
+    {
+        "walltime" : "walltime=2:00:00",
+        "cores" : "nodes=1:ppn=4",
+        "memory" : "mem=35GB"
+    },
+    "bam_qc" :
+    {
+        "walltime" : "walltime=2:00:00",
+        "cores" : "nodes=1:ppn=4",
+        "memory" : "mem=35GB"
+    },
+    "rnaseq_qc" :
+    {
+        "walltime" : "walltime=4:00:00",
+        "cores" : "nodes=1:ppn=1",
+        "memory" : "mem=35GB"
+    }
+}
