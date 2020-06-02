@@ -1,6 +1,6 @@
 import pandas as pd
 from glob import glob
-import time
+import sys
 
 conf_dir = "conf_RNA_Seq.json"
 
@@ -19,7 +19,13 @@ samtools_app = config['app']['samtools']
 bamCoverage_app = config['app']['bamCoverage']
 qualimap_app = config['app']['qualimap']
 
-dict_samples = pd.read_csv(run_file,index_col = 0)[run_ID].to_dict()
+try:
+    dict_samples = pd.read_csv(run_file,index_col = 0)[run_ID].to_dict()
+except KeyError:
+    sys.exit('Run does not exist in run sample file!')
+except FileNotFoundError:
+    sys.exit('sample run file does not exist!')
+    
 
 rule all:
     input:
@@ -186,4 +192,4 @@ rule save_history:
         "cp 4.Output/QC_report.csv 4.Output/QC_report_history/{run_ID}/QC_report.csv && "
         "cp -r 4.Output/QC_plots/ 4.Output/QC_report_history/{run_ID}/ &&"
         "cp 4.Output/check_QC_PCA.html 4.Output/QC_report_history/{run_ID}/ && "
-        "echo '{run_ID}' > logs/job_finished.txt && rm -r scripts"
+        "touch logs/job_finished.txt && rm -r scripts"

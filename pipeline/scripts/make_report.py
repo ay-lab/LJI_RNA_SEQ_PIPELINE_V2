@@ -101,7 +101,7 @@ def read_fastp(sample):
         except KeyError:
             adaptor_trimm_perc = 0
         dup_rate = round(100*data['duplication']['rate'],2)
-        link = f'<a href="3.QC_files/fastp_report/{sample}_fastp.html">seq_QC</a>'
+        link = f'<a href="../3.QC_files/fastp_report/{sample}_fastp.html">seq_QC</a>'
     return [total_reads,filtered_reads,filtered_reads_perc,adaptor_trimm_perc,dup_rate,link]
 
 def read_STAR(sample):
@@ -138,7 +138,7 @@ def read_Qualimap(sample):
                 bias_5to3_prim = l.split('=')[-1][1:-1]
                 if bias_5to3_prim == "?":
                     bias_5to3_prim = 100.0
-    link = f'<a href="3.QC_files/qualimap/{sample}/qualimapReport.html">map_QC</a>'
+    link = f'<a href="../3.QC_files/qualimap/{sample}/qualimapReport.html">map_QC</a>'
     return [Exonic_perc,intronic_perc,intergenic_perc,bias_5_prim,bias_3_prim,bias_5to3_prim,link]        
 
 def read_bamqc(sample):
@@ -151,7 +151,7 @@ def read_bamqc(sample):
                     insert_median = float(''.join(l.split('=')[-1][:-1].split(',')))
             except ValueError:
                 insert_mean, insert_median = 0, 0
-    link = f'<a href="3.QC_files/qualimap_bamqc/{sample}/qualimapReport.html">bam_QC</a>'
+    link = f'<a href="../3.QC_files/qualimap_bamqc/{sample}/qualimapReport.html">bam_QC</a>'
     return [insert_mean,insert_median,link]    
 
 def read_bw(sample,dirin,genome_version):
@@ -232,5 +232,5 @@ df_QC_report = df_QC_report.sort_index()
 df_QC_report[['total_reads','filtered_reads','filtered_reads_perc','adaptor_trimm_perc','dup_rate','uniquely_mapped_reads','uniquely_mapped_reads_perc','spliced_reads','anno_spliced_reads','too_short_reads','too_short_reads_perc','exonic_perc','intronic_perc','intergenic_perc','bias_5_prim','bias_3_prim','bias_5to3_prim','STAR_counts','STAR_counts_perc','t_rRNA_counts','t_rRNA_counts_perc','protein_coding_perc','pseudogene_perc','long-noncoding_perc','short-noncoding_perc','final_STAR_counts','insert_mean','insert_median','Total_genes','recommendation',run_ID,'Outlier','Note']].to_csv('4.Output/QC_report.csv')
 
 df_html = df_QC_report[['seq_QC','map_QC','bam_QC','bigwig','recommendation',run_ID,'Outlier','Note']]
-df_html.index.name = f'<a href="4.Output/check_QC_PCA.html">PCA_plot</a>\t\t<a href="4.Output/QC_report.csv">Download_table</a>\t\t<a href="4.Output/QC_plots">QC_plots</a>'
+df_html.index.name = f'<a href="./check_QC_PCA.html">PCA_plot</a>\t\t<a href="./QC_report.csv">Download_table</a>\t\t<a href="4.Output/QC_plots">QC_plots</a>'
 df_html.to_html(f'4.Output/QC_report.html',escape=False,notebook = True)      
