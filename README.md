@@ -221,7 +221,7 @@ In these figures, Good sample points were condensed to the left side for allowin
 - The third type contains information that shows additional QC measures and here are the details:
 
 
-  **STAR_minimal_counts_soft_threshold:   **Total number of genes recovered was plotted as a function of STAR counts, and saturation function was used to fit the data. Once fitted, the algorithm first detected the minimal STAR counts required for yielding defined gene recovery percentage and compared it to the set level. The higher value of them was then used as the final minimal STAR counts threshold for separating samples that need to be resequenced (if less than the threshold and have no other issues). After that, normal distribution parameters were calculated for total gene numbers of all other samples that are above the minimal STAR counts threshold, and we considered any sample fell below 95% confidence interval need to be manually QCed. The minimal percentage of gene recovery can be specified in the json config file.
+  **STAR_minimal_counts_soft_threshold:** Total number of genes recovered was plotted as a function of STAR counts, and saturation function was used to fit the data. Once fitted, the algorithm first detected the minimal STAR counts required for yielding defined gene recovery percentage and compared it to the set level. The higher value of them was then used as the final minimal STAR counts threshold for separating samples that need to be resequenced (if less than the threshold and have no other issues). After that, normal distribution parameters were calculated for total gene numbers of all other samples that are above the minimal STAR counts threshold, and we considered any sample fell below 95% confidence interval need to be manually QCed. The minimal percentage of gene recovery can be specified in the json config file.
 
   scenario 1: soft threshold was used
 
@@ -232,11 +232,11 @@ In these figures, Good sample points were condensed to the left side for allowin
   <img src='img/Saturation_case2.png' width = 800>
 
 
-  **Spearman_correlation:  **Pairwise spearman correlation of all samples was calculated for detecting outlier. We assume the mean spearman value of each sample should be within the normal distribution of all sample means with 95% confidence (one tail). If not then that sample will be marked as 'outlier'.   
+  **Spearman_correlation:** Pairwise spearman correlation of all samples was calculated for detecting outlier. We assume the mean spearman value of each sample should be within the normal distribution of all sample means with 95% confidence (one tail). If not then that sample will be marked as 'outlier'.   
 
   <img src='img/SP_corr.png' width = 800>  
 
-  # **Reference genome**
+  # Reference genome
 
 
   The general rule of making reference index should follow [STAR's tutorial](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), and any change/addition/deletion of the reference files must be properly documented.
