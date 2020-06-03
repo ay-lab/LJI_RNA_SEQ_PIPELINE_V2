@@ -257,37 +257,38 @@ In these figures, Good sample points were condensed to the left side for allowin
 ```
 # /usr/bin/env python3
 
-  # remove PATCH and Alternative haplotypes from fasta file
-  # usage remove_patch.py in.fasta > output.fasta
+# remove PATCH and Alternative haplotypes from fasta file
+# usage remove_patch.py in.fasta > output.fasta
 
 
-  from Bio import SeqIO
-  import sys
+from Bio import SeqIO
+import sys
 
-  in_fasta = sys.argv[1]
-  ffile = SeqIO.parse(in_fasta, "fasta")
-  header_pattern = ['PATCH','HSCHR']
-  for seq_record in ffile:
+in_fasta = sys.argv[1]
+ffile = SeqIO.parse(in_fasta, "fasta")
+header_pattern = ['PATCH','HSCHR']
+for seq_record in ffile:
       if not any([i in seq_record.description for i in header_pattern]):
           print(seq_record.format('fasta'))
 ```
 
   - For making reference index; please make proper changes according to your settings
 
-```  #!/bin/bash
-  #PBS -N STAR_gen_37
-  #PBS -o out_STAR_gen_37
-  #PBS -e err_STAR_gen_37
-  #PBS -q default
-  #PBS -l nodes=1:ppn=4
-  #PBS -l mem=40gb
-  #PBS -l walltime=20:00:00
-  cd  /mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference
+```  
+#!/bin/bash
+#PBS -N STAR_gen_37
+#PBS -o out_STAR_gen_37
+#PBS -e err_STAR_gen_37
+#PBS -q default
+#PBS -l nodes=1:ppn=4
+#PBS -l mem=40gb
+#PBS -l walltime=20:00:00
+cd  /mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference
 
-  # trim off batches and alternative haplotypes if needed
-  ./remove_patch.py GRCH37.P13/GRCh37.p13.genome.fa > GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa
+# trim off batches and alternative haplotypes if needed
+./remove_patch.py GRCH37.P13/GRCh37.p13.genome.fa > GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa
 
-  STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFastaFiles ./GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa --sjdbGTFfile ./GRCH37.P13/gencode.v19.annotation.gtf --sjdbOverhang 100
+STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFastaFiles ./GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa --sjdbGTFfile ./GRCH37.P13/gencode.v19.annotation.gtf --sjdbOverhang 100
 ```
 
   Separately, an annotation file should be made for counting reads by gene type (gene_type_4) and TPM calculation in the pipeline. A example human GRCh37 annotation file can be downloaded [here](./files/GRCh37_annotation.csv). To make the annotation table, you will need to execute the following steps:
