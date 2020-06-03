@@ -124,20 +124,36 @@ def read_STAR(sample):
 def read_Qualimap(sample):
     with open(f'3.QC_files/qualimap/{sample}/rnaseq_qc_results.txt') as Qualimap_file:
         for l in Qualimap_file.readlines():
-            if 'exonic' in l:
-                Exonic_perc = float(l.split('=')[-1].split('(')[1][:-3])
-            if 'intronic' in l:
-                intronic_perc = float(l.split('=')[-1].split('(')[1][:-3])
-            if 'intergenic' in l:
-                intergenic_perc = float(l.split('=')[-1].split('(')[1][:-3])
-            if "5' bias" in l:
-                bias_5_prim = l.split('=')[-1][1:-1]
-            if "3' bias" in l and "5'-3' bias" not in l:
-                bias_3_prim = l.split('=')[-1][1:-1]
-            if "5'-3' bias" in l:
-                bias_5to3_prim = l.split('=')[-1][1:-1]
-                if bias_5to3_prim == "?":
-                    bias_5to3_prim = 100.0
+            try:
+                if 'exonic' in l:
+                    Exonic_perc = float(l.split('=')[-1].split('(')[1][:-3])
+            except ValueError:
+                Exonic_perc = -1
+            try:
+                if 'intronic' in l:
+                    intronic_perc = float(l.split('=')[-1].split('(')[1][:-3])
+            except ValueError:
+                intronic_perc = -1
+            try:
+                if 'intergenic' in l:
+                    intergenic_perc = float(l.split('=')[-1].split('(')[1][:-3])
+            except ValueError:
+                intergenic_perc = -1
+            try:    
+                if "5' bias" in l:
+                    bias_5_prim = float(l.split('=')[-1][1:-1])
+            except ValueError:
+                bias_5_prim = -1
+            try:
+                if "3' bias" in l and "5'-3' bias" not in l:
+                    bias_3_prim = float(l.split('=')[-1][1:-1])
+            except ValueError:
+                bias_3_prim = -1
+            try:
+                if "5'-3' bias" in l:
+                    bias_5to3_prim = float(l.split('=')[-1][1:-1])
+            except ValueError:
+                bias_5to3_prim = -1
     link = f'<a href="../3.QC_files/qualimap/{sample}/qualimapReport.html">map_QC</a>'
     return [Exonic_perc,intronic_perc,intergenic_perc,bias_5_prim,bias_3_prim,bias_5to3_prim,link]        
 

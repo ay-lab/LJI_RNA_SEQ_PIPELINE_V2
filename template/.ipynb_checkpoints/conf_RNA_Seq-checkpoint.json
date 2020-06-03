@@ -1,18 +1,18 @@
 {
     "app":{
-        "fastp":"/mnt/BioHome/ndu/anaconda3/envs/snake/bin/fastp",
-        "STAR":"/mnt/BioHome/ndu/anaconda3/envs/snake/bin/STAR",
+        "fastp":"/mnt/BioHome/ndu/anaconda3/bin/fastp",
+        "STAR":"/mnt/BioHome/ndu/anaconda3/bin/STAR",
         "samtools":"samtools",
-        "bamCoverage":"/mnt/BioHome/ndu/anaconda3/envs/snake/bin/bamCoverage",
-        "qualimap":"/mnt/BioHome/ndu/anaconda3/envs/snake/bin/qualimap",
+        "bamCoverage":"/mnt/BioHome/ndu/anaconda3/bin/bamCoverage",
+        "qualimap":"/mnt/BioHome/ndu/anaconda3/bin/qualimap",
         "pipeline":"/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/RNA_SEQ_Script/LJI_RNA_SEQ_PIPELINE_V2/pipeline"
     },
     
      "config": {
-        "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting/sample_run.csv",
-        "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting", 
-        "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting/metadata_all.csv",
-        "run_ID":"Run_1",
+        "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/sample_run.csv",
+        "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting", 
+        "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/metadata_all.csv",
+        "run_ID":"Run_3",
         "genome_version":"hg19",
         "bed_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/hg19_GencodeCompV19.bed", 
         "ref_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCH37.P13",
