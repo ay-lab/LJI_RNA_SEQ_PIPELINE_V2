@@ -6,7 +6,7 @@
 * La Jolla, CA USA
 * Current version: 2.0 (05/27/2020)
 ------
-#  **Summary **
+#  Summary
 
 The pipeline was developed for RNA-Seq read mapping and QC as part of the interactive work flow between sequence and bioinformatics team. The version 2 pipeline was implemented using Snakemake in Sun Grid Engine (SGE) environment, and it can be can be implemented in any cluster and cloud environments without significant modifications. Compare to version 1 pipeline, we added features that enables recording history of each QC iteration and integrated the 3 steps approach to 1 step operation. The workflow and pipeline structure are as follows:
 
@@ -22,7 +22,7 @@ Prepare necessary files -> qsub pbs_submit.sh -> check report
 
 <img src='./img/snakemake.png' width = 800>
 
-# **Pipeline setup**
+# Pipeline setup
 
 
 
@@ -60,7 +60,7 @@ Then install all dependencies
 
 
 
-# **Data prepration**
+# Data prepration
 #### Samples and running sheet:
 
 For running the pipeline you will need 1. all fastq files with proper names, 2. a sample run table with information on which samples to be used for the analysis, and 3. (optional) a meta table with meta information for all of the samples listed in the sample run table.  
@@ -139,7 +139,7 @@ Example for LJI implementation.
 ```
 
 
-# **Check results**
+# Check results
 
 #### Step 1: overview
 Once completed, you can locate QC reports and QC plots for each run in the ```4.Output``` folder within the working directory. The ```QC_report.html``` is the main index file containing links to all QC files required for checking and trouble shooting library qualities for the last run, which is recorded in the ```lastest_run.txt```. Records of QC report for the previous runs can be found in the  ``` QC_report_history``` folder.
