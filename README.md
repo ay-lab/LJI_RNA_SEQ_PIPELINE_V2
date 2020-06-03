@@ -287,14 +287,16 @@ In these figures, Good sample points were condensed to the left side for allowin
   # trim off batches and alternative haplotypes if needed
   ./remove_patch.py GRCH37.P13/GRCh37.p13.genome.fa > GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa
 
-  STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFastaFiles ./GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa --sjdbGTFfile ./GRCH37.P13/gencode.v19.annotation.gtf --sjdbOverhang 100 ```
-
+  STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFastaFiles ./GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa --sjdbGTFfile ./GRCH37.P13/gencode.v19.annotation.gtf --sjdbOverhang 100
+```
 
   Separately, an annotation file should be made for counting reads by gene type (gene_type_4) and TPM calculation in the pipeline. A example human GRCh37 annotation file can be downloaded [here](./files/GRCh37_annotation.csv). To make the annotation table, you will need to execute the following steps:
 
   1. Getting gene name and type for each ensembl ID. You can export annotations table for [GRCh37](https://grch37.ensembl.org/biomart/martview/923bfa0c7a1727c3fe634eb8c422df78) and [GRCh38](http://uswest.ensembl.org/biomart/martview/e859cf18a85550949a12ba09c8ab117c) from ensembl biomart. Mouse gene annotations are also available from these links.
   2. Merge gene types so 4 categories. The dictionary for merging of gene types can be downloaded [here](files/dict_gene_type.csv) .
   3. Getting exon length for each gene; this is a common output from most counting tools such as featureCounts and HTSeq, or you can download from a confident source.
+
+
 
 # **Change QC rules**
 
