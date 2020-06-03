@@ -42,7 +42,7 @@ Make sure the following tools have been installed on the server. Please note tha
 
 
 #### Step 2:
-Make a clone of this git repository, and use the commend below to install [Snakemake](https://snakemake.readthedocs.io/en/v3.9.1/) and all dependencies for the pipeline. We recommend the  version <= 3.9.1 for stable execution.
+Make a clone of this git repository, and use the commend below to install [Snakemake](https://snakemake.readthedocs.io/en/v3.9.1/) and all dependencies for the pipeline. We recommend the  version 3.9.1 for stable execution.
 
 ```git clone https://github.com/ndu-UCSD/LJI_RNA_SEQ_PIPELINE_V2.git```
 
