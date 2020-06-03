@@ -236,12 +236,12 @@ In these figures, Good sample points were condensed to the left side for allowin
 
   <img src='img/SP_corr.png' width = 800>  
 
-  # Reference genome
+# Reference genome
 
 
-  The general rule of making reference index should follow [STAR's tutorial](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), and any change/addition/deletion of the reference files must be properly documented.
+The general rule of making reference index should follow [STAR's tutorial](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), and any change/addition/deletion of the reference files must be properly documented.
 
-  Here are the source of implemented reference files where we downloaded reference genome from:
+Here are the source of implemented reference files where we downloaded reference genome from:
   1. Human genome version GRCh37: **Full** genome reference downloaded from [GENCODE Release 19 (GRCh37.p13)](https://www.gencodegenes.org/human/release_19.html), Bed file downloaded from [Rseqc reference hg19](https://sourceforge.net/projects/rseqc/files/BED/Human_Homo_sapiens/hg19_GencodeCompV19.bed.gz/download).
 
   2. Human genome version GRCh38: **Primary assemble** genome reference downloaded from [GENCODE Release 32 (GRCh38.p13)](https://www.gencodegenes.org/human/release_32.html), Bed file downloaded from [Rseqc reference hg38](https://sourceforge.net/projects/rseqc/files/BED/Human_Homo_sapiens/hg38_Gencode_V28.bed.gz/download).
@@ -299,6 +299,6 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFa
 
 
 
-# **Change QC rules**
+# Change QC rules
 
 Depending on the sequencing method and sample type, rules optimized for ranking the quality of RNA seq results may change from case to case, and  
