@@ -14,7 +14,7 @@ The pipeline was developed for RNA-Seq read mapping and QC as part of the intera
 
 <img src='./img/workflow.png' width = 800>
 
-**Running pipeline: **
+**Running pipeline**
 
 Prepare necessary files -> qsub pbs_submit.sh -> check report
 
