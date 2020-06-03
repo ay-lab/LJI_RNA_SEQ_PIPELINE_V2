@@ -6,7 +6,7 @@
 * La Jolla, CA USA
 * Current version: 2.0 (05/27/2020)
 ------
-#  **Summary **
+#  Summary
 
 The pipeline was developed for RNA-Seq read mapping and QC as part of the interactive work flow between sequence and bioinformatics team. The version 2 pipeline was implemented using Snakemake in Sun Grid Engine (SGE) environment, and it can be can be implemented in any cluster and cloud environments without significant modifications. Compare to version 1 pipeline, we added features that enables recording history of each QC iteration and integrated the 3 steps approach to 1 step operation. The workflow and pipeline structure are as follows:
 
@@ -14,7 +14,7 @@ The pipeline was developed for RNA-Seq read mapping and QC as part of the intera
 
 <img src='./img/workflow.png' width = 800>
 
-**Running pipeline: **
+**Running pipeline**
 
 Prepare necessary files -> qsub pbs_submit.sh -> check report
 
@@ -22,7 +22,7 @@ Prepare necessary files -> qsub pbs_submit.sh -> check report
 
 <img src='./img/snakemake.png' width = 800>
 
-# **Pipeline setup**
+# Pipeline setup
 
 
 
@@ -42,7 +42,7 @@ Make sure the following tools have been installed on the server. Please note tha
 
 
 #### Step 2:
-Make a clone of this git repository, and use the commend below to install [Snakemake](https://snakemake.readthedocs.io/en/v3.9.1/) and all dependencies for the pipeline. We recommend the  version <= 3.9.1 for stable execution.
+Make a clone of this git repository, and use the commend below to install [Snakemake](https://snakemake.readthedocs.io/en/v3.9.1/) and all dependencies for the pipeline. We recommend the  version 3.9.1 for stable execution.
 
 ```git clone https://github.com/ndu-UCSD/LJI_RNA_SEQ_PIPELINE_V2.git```
 
@@ -60,7 +60,7 @@ Then install all dependencies
 
 
 
-# **Data prepration**
+# Data prepration
 #### Samples and running sheet:
 
 For running the pipeline you will need 1. all fastq files with proper names, 2. a sample run table with information on which samples to be used for the analysis, and 3. (optional) a meta table with meta information for all of the samples listed in the sample run table.  
@@ -139,7 +139,7 @@ Example for LJI implementation.
 ```
 
 
-# **Check results**
+# Check results
 
 #### Step 1: overview
 Once completed, you can locate QC reports and QC plots for each run in the ```4.Output``` folder within the working directory. The ```QC_report.html``` is the main index file containing links to all QC files required for checking and trouble shooting library qualities for the last run, which is recorded in the ```lastest_run.txt```. Records of QC report for the previous runs can be found in the  ``` QC_report_history``` folder.
@@ -221,7 +221,7 @@ In these figures, Good sample points were condensed to the left side for allowin
 - The third type contains information that shows additional QC measures and here are the details:
 
 
-  **STAR_minimal_counts_soft_threshold:   **Total number of genes recovered was plotted as a function of STAR counts, and saturation function was used to fit the data. Once fitted, the algorithm first detected the minimal STAR counts required for yielding defined gene recovery percentage and compared it to the set level. The higher value of them was then used as the final minimal STAR counts threshold for separating samples that need to be resequenced (if less than the threshold and have no other issues). After that, normal distribution parameters were calculated for total gene numbers of all other samples that are above the minimal STAR counts threshold, and we considered any sample fell below 95% confidence interval need to be manually QCed. The minimal percentage of gene recovery can be specified in the json config file.
+  **STAR_minimal_counts_soft_threshold:** Total number of genes recovered was plotted as a function of STAR counts, and saturation function was used to fit the data. Once fitted, the algorithm first detected the minimal STAR counts required for yielding defined gene recovery percentage and compared it to the set level. The higher value of them was then used as the final minimal STAR counts threshold for separating samples that need to be resequenced (if less than the threshold and have no other issues). After that, normal distribution parameters were calculated for total gene numbers of all other samples that are above the minimal STAR counts threshold, and we considered any sample fell below 95% confidence interval need to be manually QCed. The minimal percentage of gene recovery can be specified in the json config file.
 
   scenario 1: soft threshold was used
 
@@ -232,16 +232,16 @@ In these figures, Good sample points were condensed to the left side for allowin
   <img src='img/Saturation_case2.png' width = 800>
 
 
-  **Spearman_correlation:  **Pairwise spearman correlation of all samples was calculated for detecting outlier. We assume the mean spearman value of each sample should be within the normal distribution of all sample means with 95% confidence (one tail). If not then that sample will be marked as 'outlier'.   
+  **Spearman_correlation:** Pairwise spearman correlation of all samples was calculated for detecting outlier. We assume the mean spearman value of each sample should be within the normal distribution of all sample means with 95% confidence (one tail). If not then that sample will be marked as 'outlier'.   
 
   <img src='img/SP_corr.png' width = 800>  
 
-  # **Reference genome**
+# Reference genome
 
 
-  The general rule of making reference index should follow [STAR's tutorial](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), and any change/addition/deletion of the reference files must be properly documented.
+The general rule of making reference index should follow [STAR's tutorial](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), and any change/addition/deletion of the reference files must be properly documented.
 
-  Here are the source of implemented reference files where we downloaded reference genome from:
+Here are the source of implemented reference files where we downloaded reference genome from:
   1. Human genome version GRCh37: **Full** genome reference downloaded from [GENCODE Release 19 (GRCh37.p13)](https://www.gencodegenes.org/human/release_19.html), Bed file downloaded from [Rseqc reference hg19](https://sourceforge.net/projects/rseqc/files/BED/Human_Homo_sapiens/hg19_GencodeCompV19.bed.gz/download).
 
   2. Human genome version GRCh38: **Primary assemble** genome reference downloaded from [GENCODE Release 32 (GRCh38.p13)](https://www.gencodegenes.org/human/release_32.html), Bed file downloaded from [Rseqc reference hg38](https://sourceforge.net/projects/rseqc/files/BED/Human_Homo_sapiens/hg38_Gencode_V28.bed.gz/download).
@@ -257,38 +257,39 @@ In these figures, Good sample points were condensed to the left side for allowin
 ```
 # /usr/bin/env python3
 
-  # remove PATCH and Alternative haplotypes from fasta file
-  # usage remove_patch.py in.fasta > output.fasta
+# remove PATCH and Alternative haplotypes from fasta file
+# usage remove_patch.py in.fasta > output.fasta
 
 
-  from Bio import SeqIO
-  import sys
+from Bio import SeqIO
+import sys
 
-  in_fasta = sys.argv[1]
-  ffile = SeqIO.parse(in_fasta, "fasta")
-  header_pattern = ['PATCH','HSCHR']
-  for seq_record in ffile:
+in_fasta = sys.argv[1]
+ffile = SeqIO.parse(in_fasta, "fasta")
+header_pattern = ['PATCH','HSCHR']
+for seq_record in ffile:
       if not any([i in seq_record.description for i in header_pattern]):
           print(seq_record.format('fasta'))
 ```
 
   - For making reference index; please make proper changes according to your settings
 
-```  #!/bin/bash
-  #PBS -N STAR_gen_37
-  #PBS -o out_STAR_gen_37
-  #PBS -e err_STAR_gen_37
-  #PBS -q default
-  #PBS -l nodes=1:ppn=4
-  #PBS -l mem=40gb
-  #PBS -l walltime=20:00:00
-  cd  /mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference
+```  
+#!/bin/bash
+#PBS -N STAR_gen_37
+#PBS -o out_STAR_gen_37
+#PBS -e err_STAR_gen_37
+#PBS -q default
+#PBS -l nodes=1:ppn=4
+#PBS -l mem=40gb
+#PBS -l walltime=20:00:00
+cd  /mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference
 
-  # trim off batches and alternative haplotypes if needed
-  ./remove_patch.py GRCH37.P13/GRCh37.p13.genome.fa > GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa
+# trim off batches and alternative haplotypes if needed
+./remove_patch.py GRCH37.P13/GRCh37.p13.genome.fa > GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa
 
-  STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFastaFiles ./GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa --sjdbGTFfile ./GRCH37.P13/gencode.v19.annotation.gtf --sjdbOverhang 100 ```
-
+STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFastaFiles ./GRCH37.P13/GRCh37.p13.genome.primary_assembly.fa --sjdbGTFfile ./GRCH37.P13/gencode.v19.annotation.gtf --sjdbOverhang 100
+```
 
   Separately, an annotation file should be made for counting reads by gene type (gene_type_4) and TPM calculation in the pipeline. A example human GRCh37 annotation file can be downloaded [here](./files/GRCh37_annotation.csv). To make the annotation table, you will need to execute the following steps:
 
@@ -296,6 +297,8 @@ In these figures, Good sample points were condensed to the left side for allowin
   2. Merge gene types so 4 categories. The dictionary for merging of gene types can be downloaded [here](files/dict_gene_type.csv) .
   3. Getting exon length for each gene; this is a common output from most counting tools such as featureCounts and HTSeq, or you can download from a confident source.
 
-# **Change QC rules**
+
+
+# Change QC rules
 
 Depending on the sequencing method and sample type, rules optimized for ranking the quality of RNA seq results may change from case to case, and  
