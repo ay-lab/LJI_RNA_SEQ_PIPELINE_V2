@@ -254,7 +254,7 @@ Here are the source of implemented reference files where we downloaded reference
   - create remove_patch.py and put in the following code
 
 
-```
+```python
 # /usr/bin/env python3
 
 # remove PATCH and Alternative haplotypes from fasta file
@@ -274,7 +274,7 @@ for seq_record in ffile:
 
   - For making reference index; please make proper changes according to your settings
 
-```  
+```sh  
 #!/bin/bash
 #PBS -N STAR_gen_37
 #PBS -o out_STAR_gen_37
