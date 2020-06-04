@@ -99,7 +99,7 @@ Copy and paste the .sh and .json files from template folder to the working direc
 
 
 Example for LJI implementation.
-```python 
+```json 
 {
     "app":{
         "fastp":"/mnt/BioHome/ndu/anaconda3/bin/fastp",
