@@ -95,7 +95,7 @@ Copy and paste the .sh and .json files from template folder to the working direc
 
 * "config" - directories and parameters for the next run; the example was configured for GRCH37.P13 as reference genome.    
 
-* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes here.
+* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](#Change QC rules).
 
 
 Example for LJI implementation.
@@ -301,4 +301,12 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFa
 
 # Change QC rules
 
-Depending on the sequencing method and sample type, rules optimized for ranking the quality of RNA seq results may change from case to case, and  
+Depending on the sequencing method and sample type, rules optimized for ranking the quality of RNA seq results may vary. There are two separated parts of the QC ranking algorithm, the logic and thresholds. In general, the logic section should stay put while the thresholds can be more flexible. 
+
+To change QC threshold:
+
+In the configuration file QC_threshold section, the sole number for each item is the minimal cutoff (maximal for "too_short_reads_perc" and "t_rRNA_counts_perc") for that parameter, exceptions are 1. "Total_genes" - range of minimal total genes counts; example here defines that if calculated threshold more than 9000 then use 9000. 2. "bias_5to3_prim" - lower and upper limit. 3. "insert_median" - range of lower and upper limit. 4. "minimal_counts" - 'fixed' or 'perc'; if 'fixed' then use "final_STAR_counts" as cut off, if 'perc' then the threshold is based on saturation curve.
+
+To change QC rule logic:
+
+All QC rule functions are defined in scripts/make_report.py function RNA_QC; make sure proper version control when editing this section here.
