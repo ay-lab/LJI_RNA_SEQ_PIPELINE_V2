@@ -93,35 +93,36 @@ Copy and paste the .sh and .json files from template folder to the working direc
 
 * "app" - locations where the above listed apps were installed, and where the pipeline was downloaded to.
 
-* "config" - directories and parameters for the next run; the example was configured for GRCH37.P13 as reference genome.    
+* "config" - directories and parameters for the next run ("PE" for paired-end or "SE" for single-end); the example was configured for GRCH37.P13 as reference genome.    
 
-* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes here.
+* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](#Change QC rules).
 
 
 Example for LJI implementation.
-```
+```js 
 {
     "app":{
         "fastp":"/mnt/BioHome/ndu/anaconda3/bin/fastp",
         "STAR":"/mnt/BioHome/ndu/anaconda3/bin/STAR",
         "samtools":"samtools",
         "bamCoverage":"/mnt/BioHome/ndu/anaconda3/bin/bamCoverage",
-        "qualimap":"/mnt/BioHome/ndu/anaconda3/envs/snake/bin/qualimap",
+        "qualimap":"/mnt/BioHome/ndu/anaconda3/bin/qualimap",
         "pipeline":"/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/RNA_SEQ_Script/LJI_RNA_SEQ_PIPELINE_V2/pipeline"
     },
-
+    
      "config": {
-        "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting/sample_run.csv",
-        "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting",
-        "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting/metadata_all.csv",
+        "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/sample_run.csv",
+        "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting", 
+        "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/metadata_all.csv",
+        "run_type":"PE",
         "run_ID":"Run_1",
         "genome_version":"hg19",
-        "bed_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/hg19_GencodeCompV19.bed",
+        "bed_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/hg19_GencodeCompV19.bed", 
         "ref_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCH37.P13",
         "gtf_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCH37.P13/gencode.v19.annotation.gtf",
         "annotation_file": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCh37_annotation.csv"
      },
-
+    
      "QC_threshold": {
         "final_STAR_counts": 3000000.0,
         "uniquely_mapped_reads_perc": 60,
@@ -254,7 +255,7 @@ Here are the source of implemented reference files where we downloaded reference
   - create remove_patch.py and put in the following code
 
 
-```
+```python
 # /usr/bin/env python3
 
 # remove PATCH and Alternative haplotypes from fasta file
@@ -274,7 +275,7 @@ for seq_record in ffile:
 
   - For making reference index; please make proper changes according to your settings
 
-```  
+```sh  
 #!/bin/bash
 #PBS -N STAR_gen_37
 #PBS -o out_STAR_gen_37
@@ -301,4 +302,12 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir ./GRCH37.P13 --genomeFa
 
 # Change QC rules
 
-Depending on the sequencing method and sample type, rules optimized for ranking the quality of RNA seq results may change from case to case, and  
+Depending on the sequencing method and sample type, rules optimized for ranking the quality of RNA seq results may vary. There are two separated parts of the QC ranking algorithm, the logic and thresholds. In general, the logic section should stay put while the thresholds can be more flexible. 
+
+To change QC threshold:
+
+In the configuration file QC_threshold section, the sole number for each item is the minimal cutoff (maximal for "too_short_reads_perc" and "t_rRNA_counts_perc") for that parameter, exceptions are 1. "Total_genes" - range of minimal total genes counts; example here defines that if calculated threshold more than 9000 then use 9000. 2. "bias_5to3_prim" - lower and upper limit. 3. "insert_median" - range of lower and upper limit. 4. "minimal_counts" - 'fixed' or 'perc'; if 'fixed' then use "final_STAR_counts" as cut off, if 'perc' then the threshold is based on saturation curve.
+
+To change QC rule logic:
+
+All QC rule functions are defined in scripts/make_report.py function RNA_QC; make sure proper version control when editing this section here.

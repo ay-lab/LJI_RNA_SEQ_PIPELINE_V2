@@ -93,7 +93,7 @@ Copy and paste the .sh and .json files from template folder to the working direc
 
 * "app" - locations where the above listed apps were installed, and where the pipeline was downloaded to.
 
-* "config" - directories and parameters for the next run; the example was configured for GRCH37.P13 as reference genome.    
+* "config" - directories and parameters for the next run ("PE" for paired-end or "SE" for single-end); the example was configured for GRCH37.P13 as reference genome.    
 
 * "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](#Change QC rules).
 
@@ -106,22 +106,23 @@ Example for LJI implementation.
         "STAR":"/mnt/BioHome/ndu/anaconda3/bin/STAR",
         "samtools":"samtools",
         "bamCoverage":"/mnt/BioHome/ndu/anaconda3/bin/bamCoverage",
-        "qualimap":"/mnt/BioHome/ndu/anaconda3/envs/snake/bin/qualimap",
+        "qualimap":"/mnt/BioHome/ndu/anaconda3/bin/qualimap",
         "pipeline":"/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/RNA_SEQ_Script/LJI_RNA_SEQ_PIPELINE_V2/pipeline"
     },
-
+    
      "config": {
-        "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting/sample_run.csv",
-        "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting",
-        "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_CD4_Naive_Resting/metadata_all.csv",
+        "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/sample_run.csv",
+        "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting", 
+        "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/metadata_all.csv",
+        "run_type":"PE",
         "run_ID":"Run_1",
         "genome_version":"hg19",
-        "bed_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/hg19_GencodeCompV19.bed",
+        "bed_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/hg19_GencodeCompV19.bed", 
         "ref_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCH37.P13",
         "gtf_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCH37.P13/gencode.v19.annotation.gtf",
         "annotation_file": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/GRCh37_annotation.csv"
      },
-
+    
      "QC_threshold": {
         "final_STAR_counts": 3000000.0,
         "uniquely_mapped_reads_perc": 60,
