@@ -12,6 +12,7 @@
         "run_file":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/sample_run.csv",
         "dirin": "/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting", 
         "metadata_dir":"/mnt/BioAdHoc/Groups/vd-vijay/VIJAY_LAB_RNA_SEQ/Project_SeAs/SeAs_TREGmem_Resting/metadata_all.csv",
+        "run_type":"PE",
         "run_ID":"Run_3",
         "genome_version":"hg19",
         "bed_dir": "/mnt/BioAdHoc/Groups/vd-ay/RNASeq_Workflow/Reference/hg19_GencodeCompV19.bed", 

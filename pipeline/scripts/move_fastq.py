@@ -8,6 +8,7 @@ def main():
     opts = parser.parse_args()
     conf_file = opts.json_file
     
+    
     # create all necessary folders
     for folder in [f'2.Internal_files/{folder}' for folder in  ['fastq_input','fastq_filtered','fastp_output','bam_aligned']] + [f'3.QC_files/{folder}' for folder in  ['bed_wiggle','fastp_report','qualimap','qualimap_bamqc']] + [f'4.Output/{folder}' for folder in ['counts','QC_plots','QC_report_history']]:
         os.system(f'mkdir -p {folder}') 
@@ -15,7 +16,7 @@ def main():
     dict_conf = read_json(conf_file)
     run_file = dict_conf['config']['run_file']
     run_ID = dict_conf['config']['run_ID']
-           
+    run_type = dict_conf['config']['run_type']
     
     # Check if sample_run file exist
     try:
@@ -38,18 +39,30 @@ def main():
         run_sample_list = list(df_samples.index)
     
     # move fastq files if something changed
-    if len(run_sample_list) > 0:
-        for sample_ID in run_sample_list:
-            fastq_f = []
-            fastq_r = []
-            for path in dict_samples[sample_ID].split(','):
-                fastq_f.append(f'1.Fastq_input/{path}/{sample_ID}_R1.fastq.gz')
-                fastq_r.append(f'1.Fastq_input/{path}/{sample_ID}_R2.fastq.gz') 
-            os.system(f"cat {' '.join(fastq_f)} > 2.Internal_files/fastq_input/{sample_ID}_R1.fastq.gz")
-            os.system(f"cat {' '.join(fastq_r)} > 2.Internal_files/fastq_input/{sample_ID}_R2.fastq.gz")
-     
-    os.system(f"echo {run_ID} >  4.Output/lastest_run.txt")            
+    if run_type == 'PE':
+        if len(run_sample_list) > 0:
+            for sample_ID in run_sample_list:
+                fastq_f = []
+                fastq_r = []
+                for path in dict_samples[sample_ID].split(','):
+                    fastq_f.append(f'1.Fastq_input/{path}/{sample_ID}_R1.fastq.gz')
+                    fastq_r.append(f'1.Fastq_input/{path}/{sample_ID}_R2.fastq.gz') 
+                os.system(f"cat {' '.join(fastq_f)} > 2.Internal_files/fastq_input/{sample_ID}_R1.fastq.gz")
+                os.system(f"cat {' '.join(fastq_r)} > 2.Internal_files/fastq_input/{sample_ID}_R2.fastq.gz")
+        os.system(f"echo {run_ID} >  4.Output/lastest_run.txt")            
+    
+    if run_type == 'SE':
+        if len(run_sample_list) > 0:
+            for sample_ID in run_sample_list:
+                fastq_f = []
+                for path in dict_samples[sample_ID].split(','):
+                    fastq_f.append(f'1.Fastq_input/{path}/{sample_ID}_R1.fastq.gz')
+                os.system(f"cat {' '.join(fastq_f)} > 2.Internal_files/fastq_input/{sample_ID}_R1.fastq.gz")
+        os.system(f"echo {run_ID} >  4.Output/lastest_run.txt")            
                       
+                          
+                          
+                          
 def read_json(file = 'conf_RNA_Seq.json'):
     with open(file) as json_file:
         conf = json.load(json_file)
