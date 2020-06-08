@@ -306,7 +306,7 @@ Depending on the sequencing method and sample type, rules optimized for ranking 
 
 To change QC threshold:
 
-In the configuration file QC_threshold section, the sole number for each item is the minimal cutoff (maximal for "too_short_reads_perc" and "t_rRNA_counts_perc") for that parameter, exceptions are 1. "Total_genes" - range of minimal total genes counts; example here defines that if calculated threshold more than 9000 then use 9000. 2. "bias_5to3_prim" - lower and upper limit. 3. "insert_median" - range of lower and upper limit. 4. "minimal_counts" - 'fixed' or 'perc'; if 'fixed' then use "final_STAR_counts" as cut off, if 'perc' then the threshold is based on saturation curve.
+In the configuration file QC_threshold section, the sole number for each item is the minimal cutoff (maximal for "too_short_reads_perc" and "t_rRNA_counts_perc") for that parameter, exceptions are 1. "Total_genes" - range of minimal total genes counts; example here defines that if calculated threshold more than 9000 then use 9000, if less than 5000 then use 5000, if in between 5000 and 9000 then use the calculated threshold from saturation curve. 2. "bias_5to3_prim" - lower and upper limit. 3. "insert_median" - range of lower and upper limit. 4. "minimal_counts" - 'fixed' or 'perc'; if 'fixed' then use "final_STAR_counts" as cut off, if 'perc' then the threshold is based on saturation curve. In addition, if the calculated minimal counts is less than 3,000,000 then use 3,000,000, otherwise then use the calculated threshold from saturation curve.
 
 To change QC rule logic:
 
