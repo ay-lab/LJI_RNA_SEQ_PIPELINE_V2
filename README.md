@@ -95,7 +95,7 @@ Copy and paste the .sh and .json files from template folder to the working direc
 
 * "config" - directories and parameters for the next run ("PE" for paired-end or "SE" for single-end); the example was configured for GRCH37.P13 as reference genome.    
 
-* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](#Change QC rules).
+* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](https://github.com/ndu-UCSD/LJI_RNA_SEQ_PIPELINE_V2/blob/master/README.md#change-qc-rules).
 
 
 Example for LJI implementation.
