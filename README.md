@@ -95,7 +95,7 @@ Copy and paste the .sh and .json files from template folder to the working direc
 
 * "config" - directories and parameters for the next run ("PE" for paired-end or "SE" for single-end); the example was configured for GRCH37.P13 as reference genome.    
 
-* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](#Change QC rules).
+* "QC_threshold" - The default QC parameters shown here are optimized for bulk RNA, Smart-Seq2 runs. Please consulate with sequence team before making changes. More details are available at [Change QC rules](https://github.com/ndu-UCSD/LJI_RNA_SEQ_PIPELINE_V2/blob/master/README.md#change-qc-rules).
 
 
 Example for LJI implementation.
@@ -306,7 +306,7 @@ Depending on the sequencing method and sample type, rules optimized for ranking 
 
 To change QC threshold:
 
-In the configuration file QC_threshold section, the sole number for each item is the minimal cutoff (maximal for "too_short_reads_perc" and "t_rRNA_counts_perc") for that parameter, exceptions are 1. "Total_genes" - range of minimal total genes counts; example here defines that if calculated threshold more than 9000 then use 9000. 2. "bias_5to3_prim" - lower and upper limit. 3. "insert_median" - range of lower and upper limit. 4. "minimal_counts" - 'fixed' or 'perc'; if 'fixed' then use "final_STAR_counts" as cut off, if 'perc' then the threshold is based on saturation curve.
+In the configuration file QC_threshold section, the sole number for each item is the minimal cutoff (maximal for "too_short_reads_perc" and "t_rRNA_counts_perc") for that parameter, exceptions are 1. "Total_genes" - range of minimal total genes counts; example here defines that if calculated threshold more than 9000 then use 9000, if less than 5000 then use 5000, if in between 5000 and 9000 then use the calculated threshold from saturation curve. 2. "bias_5to3_prim" - lower and upper limit. 3. "insert_median" - range of lower and upper limit. 4. "minimal_counts" - 'fixed' or 'perc'; if 'fixed' then use "final_STAR_counts" as cut off, if 'perc' then the threshold is based on saturation curve. In addition, if the calculated minimal counts is less than 3,000,000 then use 3,000,000, otherwise then use the calculated threshold from saturation curve.
 
 To change QC rule logic:
 
