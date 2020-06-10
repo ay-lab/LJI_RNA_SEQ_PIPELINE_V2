@@ -269,8 +269,8 @@ in_fasta = sys.argv[1]
 ffile = SeqIO.parse(in_fasta, "fasta")
 header_pattern = ['PATCH','HSCHR']
 for seq_record in ffile:
-      if not any([i in seq_record.description for i in header_pattern]):
-          print(seq_record.format('fasta'))
+    if not any([i in seq_record.description for i in header_pattern]):
+        print(seq_record.format('fasta'))
 ```
 
   - For making reference index; please make proper changes according to your settings

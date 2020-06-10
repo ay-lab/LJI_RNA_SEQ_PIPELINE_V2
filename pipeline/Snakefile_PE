@@ -122,7 +122,7 @@ rule rnaseq_qc:
         "3.QC_files/qualimap/{sample}/rnaseq_qc_results.txt",
         qc_dir = "3.QC_files/qualimap/{sample}/qualimapReport.html"
     shell:
-        "mkdir -p {params.out_dir} && {qualimap_app} rnaseq -pe --java-mem-size=30G "
+        "mkdir -p {params.out_dir} && {qualimap_app} rnaseq -pe -s --java-mem-size=30G "
         "-bam {params.bam} -gtf {params.gtf_dir} -outdir {params.out_dir}"
         
 rule merge_counts:

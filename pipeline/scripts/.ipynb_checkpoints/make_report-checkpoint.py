@@ -248,5 +248,5 @@ df_QC_report = df_QC_report.sort_index()
 df_QC_report[['total_reads','filtered_reads','filtered_reads_perc','adaptor_trimm_perc','dup_rate','uniquely_mapped_reads','uniquely_mapped_reads_perc','spliced_reads','anno_spliced_reads','too_short_reads','too_short_reads_perc','exonic_perc','intronic_perc','intergenic_perc','bias_5_prim','bias_3_prim','bias_5to3_prim','STAR_counts','STAR_counts_perc','t_rRNA_counts','t_rRNA_counts_perc','protein_coding_perc','pseudogene_perc','long-noncoding_perc','short-noncoding_perc','final_STAR_counts','insert_mean','insert_median','Total_genes','recommendation',run_ID,'Outlier','Note']].to_csv('4.Output/QC_report.csv')
 
 df_html = df_QC_report[['seq_QC','map_QC','bam_QC','bigwig','recommendation',run_ID,'Outlier','Note']]
-df_html.index.name = f'<a href="./check_QC_PCA.html">PCA_plot</a>\t\t<a href="./QC_report.csv">Download_table</a>\t\t<a href="4.Output/QC_plots">QC_plots</a>'
+df_html.index.name = f'<a href="./check_QC_PCA.html">PCA_plot</a>\t\t<a href="./QC_report.csv">Download_table</a>\t\t<a href="./QC_plots">QC_plots</a>'
 df_html.to_html(f'4.Output/QC_report.html',escape=False,notebook = True)      
